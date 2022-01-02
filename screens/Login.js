@@ -15,8 +15,8 @@ const Login = ({ navigation }) => {
 
   // const goToSignup = () => {
   // };
-  function navigateToSignup() {
-    navigation.navigate("Signup");
+  function navigateTo(navigateTo) {
+    navigation.navigate(navigateTo);
   }
 
   console.log(navigation);
@@ -46,7 +46,10 @@ const Login = ({ navigation }) => {
         <Text style={{ color: "#FFFFFF" }}>Forgot Password</Text>
       </View>
 
-      <TouchableOpacity onPress={navigateToSignup} style={styles.button}>
+      <TouchableOpacity
+        onPress={() => navigateTo("Dashboard")}
+        style={styles.button}
+      >
         <Text style={{ color: "#FFFFFF" }}>Login</Text>
       </TouchableOpacity>
       <View
@@ -64,7 +67,7 @@ const Login = ({ navigation }) => {
         <Text style={{ color: "#FFFFFF", marginRight: 15 }}>
           Don't have an account?
         </Text>
-        <TouchableOpacity onPress={navigateToSignup}>
+        <TouchableOpacity onPress={() => navigateTo("Signup")}>
           <Text style={{ color: "#DE3856" }}>Signup</Text>
         </TouchableOpacity>
       </View>
