@@ -1,8 +1,9 @@
 import React from "react";
-import {StyleSheet, Text, View, TouchableOpacity, Image, Dimensions} from "react-native";
+import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
 import CatItem from "../components/CatItem";
 
 const CategoryList = ({ navigation }) => {
+<<<<<<< HEAD
     const catItem = [
         {
           itemName: "Apple",
@@ -53,13 +54,71 @@ const CategoryList = ({ navigation }) => {
     const renderCatItems = ({ item }) => {
       return(
         <CatItem
+=======
+  const catItem = [
+    {
+      itemName: "Apple",
+      itemImage: require("../assets/apple.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "orange",
+      itemImage: require("../assets/orange.jpg"),
+      itemPrice: "$35",
+    },
+    {
+      itemName: "Banana",
+      itemImage: require("../assets/banana.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "Blueberry",
+      itemImage: require("../assets/blueberry.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "Cherry",
+      itemImage: require("../assets/cherry.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "Papaya",
+      itemImage: require("../assets/papaya.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "Cherry",
+      itemImage: require("../assets/cherry.jpg"),
+      itemPrice: "$25",
+    },
+    {
+      itemName: "Mango",
+      itemImage: require("../assets/mango.jpg"),
+      itemPrice: "$25",
+    },
+  ];
+
+  function navigateNext(navigateTo) {
+    navigation.navigate(navigateTo);
+  }
+
+  const renderCatItems = ({ item }) => {
+    return (
+      <CatItem
+>>>>>>> 4031b10c286964fd7884d0b405bf46ebb0724b87
         name={item.itemName}
         image={item.itemImage}
         price={item.itemPrice}
         clickFunction={() => navigateNext("DescriptionProduct")}
+<<<<<<< HEAD
         />
       );
     };
+=======
+      />
+    );
+  };
+>>>>>>> 4031b10c286964fd7884d0b405bf46ebb0724b87
 
   return (
     <View style={styles.container}>
@@ -79,6 +138,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#24253C",
   },
-});   
+});
 
 export default CategoryList;

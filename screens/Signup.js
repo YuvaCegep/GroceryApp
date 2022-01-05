@@ -62,7 +62,10 @@ const Signup = ({ navigation }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        onPress={() => navigateToSignup()}
+        style={styles.button}
+      >
         <Text style={{ color: "#FFFFFF" }}>Sign up</Text>
       </TouchableOpacity>
 
@@ -81,7 +84,7 @@ const Signup = ({ navigation }) => {
         <Text style={{ color: "#FFFFFF", marginRight: 15 }}>
           Already have an account?
         </Text>
-        <TouchableOpacity onPress={navigateToSignup}>
+        <TouchableOpacity onPress={() => navigateToSignup()}>
           <Text style={{ color: "#DE3856" }}>Sign in</Text>
         </TouchableOpacity>
       </View>
