@@ -1,14 +1,19 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity, Image, Dimensions} from "react-native";
 
-const CatItem = ({ name, image, price }) => {
+const CatItem = ({ name, image, price, clickFunction }) => {
     return (
+      <TouchableOpacity onPress={() => clickFunction()}>
         <View style={styles.container}>
           <Image
             style={styles.imageStyle}
             source={image}
           />
-          <View style={{ backgroundColor: "#ffffff" }}>
+          <View style={{ 
+            backgroundColor: "#ffffff",
+            justifyContent: "center",
+            alignItems:"center",
+             }}>
             <Text>{name}</Text>
     
             <Text>{price}</Text>
@@ -19,6 +24,7 @@ const CatItem = ({ name, image, price }) => {
             </TouchableOpacity>
           </View>
         </View>
+        </TouchableOpacity>
       );
     };
 
@@ -28,7 +34,8 @@ const CatItem = ({ name, image, price }) => {
           height: 200,
         },
         imageStyle: {
-          height: 130,
+          width: Dimensions.get("window").width / 2,
+          height: 150,
           marginRight: 5,
         },
         touchableStyle: {

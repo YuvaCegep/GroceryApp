@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity, Image, Dimensions} from "react-native";
 import CatItem from "../components/CatItem";
 
-const CategoryList = () => {
+const CategoryList = ({ navigation }) => {
     const catItem = [
         {
           itemName: "Apple",
@@ -25,8 +25,8 @@ const CategoryList = () => {
             itemPrice: "$25",
           },
           {
-            itemName: "Cherry",
-            itemImage: require("../assets/cherry.jpg"),
+            itemName: "Grapes",
+            itemImage: require("../assets/grapes.jpg"),
             itemPrice: "$25",
           },
           {
@@ -45,15 +45,21 @@ const CategoryList = () => {
             itemPrice: "$25",
           },
          ]; 
-const renderCatItems = ({ item }) => {
-    return (
-      <CatItem
+   function navigateNext(navigateTo) 
+   {
+   navigation.navigate(navigateTo);
+     }
+   
+    const renderCatItems = ({ item }) => {
+      return(
+        <CatItem
         name={item.itemName}
         image={item.itemImage}
         price={item.itemPrice}
-      />
-    );
-  };
+        clickFunction={() => navigateNext("DescriptionProduct")}
+        />
+      );
+    };
 
   return (
     <View style={styles.container}>
