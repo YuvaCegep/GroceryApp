@@ -25,19 +25,19 @@ const App = () => {
           component={Signup}
         />
         <Stack.Screen
-          options={{ headerShown: true, name: "Category" }}
+          options={{ headerShown: true, title: "Products" }}
           name="CategoryList"
           component={CategoryList}
         />
 
         <Stack.Screen
-          options={{ headerShown: true, name: "Grocery" }}
+          options={{ headerShown: true, title: "Grocery" }}
           name="Dashboard"
           component={Dashboard}
         />
 
         <Stack.Screen
-          options={{ headerShown: true, name: "Product Description" }}
+          options={{ headerShown: false, title: "Product Description" }}
           name="DescriptionProduct"
           component={DescriptionProduct}
         />

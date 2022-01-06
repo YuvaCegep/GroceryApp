@@ -13,15 +13,21 @@ const CatItem = ({ name, image, price, clickFunction }) => {
     <TouchableOpacity onPress={() => clickFunction()}>
       <View style={styles.container}>
         <Image style={styles.imageStyle} source={image} />
-        <View style={{ backgroundColor: "#ffffff" }}>
+        <View
+          style={{
+            backgroundColor: "#ffffff",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text>{name}</Text>
 
           <Text>{price}</Text>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <View style={styles.touchableStyle}>
               <Text> Add </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </TouchableOpacity>
@@ -34,7 +40,8 @@ const styles = StyleSheet.create({
     height: 200,
   },
   imageStyle: {
-    height: 130,
+    width: Dimensions.get("window").width / 2,
+    height: 150,
     marginRight: 5,
   },
   touchableStyle: {
