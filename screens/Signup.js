@@ -5,14 +5,47 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 // import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
+import { setUserName, setPassword } from "../components/Storage";
 
 const Signup = ({ navigation }) => {
-  function navigateToSignup() {
-    navigation.navigate("Login");
+  const [userNameText, onUserNameChange] = useState("");
+  const [lastNameText, onLastNameChange] = useState("");
+  const [emailText, onEmailChange] = useState("");
+  const [passwordText, onPasswordChange] = useState("");
+  const [confirmPasswordText, onConfirmPasswordChange] = useState("");
+
+  function navigateToLogin(withSignUp) {
+    if (withSignUp) {
+      if (
+        emailText === "" ||
+        passwordText === "" ||
+        confirmPasswordText === ""
+      ) {
+        Alert.alert("Alert", "Please enter all the fields", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      } else if (passwordText !== confirmPasswordText) {
+        Alert.alert("Alert", "Please enter the same password", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      } else {
+        setUserName(emailText);
+        setPassword(passwordText);
+        // userName = emailText.value;
+        // passWord = passwordText.value;
+
+        Alert.alert("Alert", "UserName and Password is set", [
+          { text: "OK", onPress: () => navigation.navigate("Login") },
+        ]);
+      }
+    } else {
+      navigation.navigate("Login");
+    }
   }
 
   const [isChecked, setChecked] = useState(false);
@@ -35,18 +68,21 @@ const Signup = ({ navigation }) => {
         placeholderTextColor={"#808080"}
         placeholder="Email"
         style={styles.userPassword}
+        onChangeText={onEmailChange}
       />
 
       <TextInput
         placeholderTextColor={"#808080"}
         placeholder="Password"
         style={styles.userPassword}
+        onChangeText={onPasswordChange}
       />
 
       <TextInput
         placeholderTextColor={"#808080"}
         placeholder="Confirm password"
         style={styles.userPassword}
+        onChangeText={onConfirmPasswordChange}
       />
 
       <View style={styles.checkBoxParent}>
@@ -63,7 +99,7 @@ const Signup = ({ navigation }) => {
       </View>
 
       <TouchableOpacity
-        onPress={() => navigateToSignup()}
+        onPress={() => navigateToLogin(true)}
         style={styles.button}
       >
         <Text style={{ color: "#FFFFFF" }}>Sign up</Text>
@@ -84,7 +120,7 @@ const Signup = ({ navigation }) => {
         <Text style={{ color: "#FFFFFF", marginRight: 15 }}>
           Already have an account?
         </Text>
-        <TouchableOpacity onPress={() => navigateToSignup()}>
+        <TouchableOpacity onPress={() => navigateToLogin(false)}>
           <Text style={{ color: "#DE3856" }}>Sign in</Text>
         </TouchableOpacity>
       </View>

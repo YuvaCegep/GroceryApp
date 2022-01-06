@@ -5,34 +5,55 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 // import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
+import { userName, passWord } from "../components/Storage";
 
 const Login = ({ navigation }) => {
   const [isChecked, setChecked] = useState(false);
 
+  const [userNameText, onUserNameChange] = useState("");
+  const [passwordText, onPasswordChange] = useState("");
+
   // const goToSignup = () => {
   // };
   function navigateTo(navigateTo) {
-    navigation.navigate(navigateTo);
+    if (navigateTo === "Dashboard") {
+      if (userNameText === "" || passwordText === "") {
+        Alert.alert("Alert", "Please enter the Username and Password", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      } else if (userName === userNameText && passWord === passwordText) {
+        navigation.navigate(navigateTo);
+      } else {
+        Alert.alert("Alert", "Wrong username or password", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      }
+    } else {
+      navigation.navigate(navigateTo);
+    }
   }
 
-  console.log(navigation);
+  console.log(userNameText);
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       <Text style={styles.textHeading}>Login</Text>
       <TextInput
         placeholderTextColor={"#808080"}
-        placeholder="userName"
+        placeholder="Username"
         style={styles.userInput}
+        onChangeText={onUserNameChange}
       />
       <TextInput
         placeholderTextColor={"#808080"}
-        placeholder="password"
+        placeholder="Password"
         style={styles.userPassword}
+        onChangeText={onPasswordChange}
       />
       <View style={styles.checkBoxParent}>
         <View style={styles.checkBoxView}>
