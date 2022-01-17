@@ -44,14 +44,22 @@ const Dashboard = ({ navigation }) => {
     return (
       <TouchableOpacity onPress={() => navigateToNextScreen("CategoryList")}>
         {
-          <View>
+          <View
+            style={{
+              width: Dimensions.get("window").width / 2,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Image style={styles.catImage} source={item.image} />
             <Text
               style={{
-                position: "absolute",
-                color: "#000000",
-                padding: 8,
-                fontWeight: "bold",
+                // position: "absolute",
+                color: "#ffffff",
+                marginTop: 2,
+                marginBottom: 10,
+                marginLeft: 8,
+                fontWeight: "normal",
               }}
             >
               {item.catName}
@@ -159,30 +167,40 @@ const Dashboard = ({ navigation }) => {
     },
   ];
 
-  return (
-    <View style={styles.container}>
-      <StatusBar style="dark" />
-      <Search
-        hint={"Search Products or Items"}
-        changedText={(nextText) => callChangeText(nextText)}
-        submitClick={() => console.log("clicked")}
-      />
+  const getHeader = () => {
+    return (
+      <View>
+        <Search
+          hint={"Search Products or Items"}
+          changedText={(nextText) => callChangeText(nextText)}
+          submitClick={() => console.log("clicked")}
+        />
 
-      <Text style={styles.headingView}>Best Value</Text>
-      <FlatList
-        style={{ flexGrow: 0 }}
-        horizontal
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-      <FlatList
-        style={{ marginBottom: 10, flexGrow: 0 }}
-        horizontal
-        data={headingList}
-        renderItem={renderHeading}
-        keyExtractor={(item) => item.categoryHeading}
-      />
+        <Text style={styles.headingView}>Best Value</Text>
+        <FlatList
+          // style={{ flexGrow: 0 }}
+
+          horizontal
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+        />
+        <FlatList
+          horizontal
+          data={headingList}
+          renderItem={renderHeading}
+          keyExtractor={(item) => item.categoryHeading}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    );
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* <ScrollView style={styles.container}> */}
+      <StatusBar style="light" />
 
       <FlatList
         style={{ marginBottom: 10 }}
@@ -190,33 +208,35 @@ const Dashboard = ({ navigation }) => {
         data={catList}
         renderItem={renderCatList}
         keyExtractor={(item) => item.catName}
+        showsHorizontalScrollIndicator={false}
+        ListHeaderComponent={getHeader}
       />
-    </View>
+      {/* </ScrollView> */}
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#24253C",
   },
   bannerImage: {
     height: 150,
     width: 270,
     margin: 10,
+    borderRadius: 8,
   },
   headingView: {
     marginLeft: 25,
     fontSize: 20,
     color: "#ffffff",
-    marginTop: 10,
+    marginTop: 5,
+    marginBottom: 5,
   },
   catImage: {
-    margin: 3,
-    justifyContent: "center",
-    alignItems: "center",
     height: 150,
-    width: Dimensions.get("window").width / 2,
+    width: Dimensions.get("window").width / 2.2,
+    borderRadius: 8,
   },
 });
 

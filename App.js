@@ -31,7 +31,13 @@ const App = () => {
         />
 
         <Stack.Screen
-          options={{ headerShown: true, title: "Grocery" }}
+          options={{
+            headerShown: true,
+            title: "Grocery",
+            headerStyle: { backgroundColor: "#24253C" },
+            headerTitleStyle: { color: "#ffffff" },
+            headerTintColor: "#ffffff",
+          }}
           name="Dashboard"
           component={Dashboard}
         />
