@@ -12,6 +12,8 @@ import { StatusBar } from "expo-status-bar";
 import Checkbox from "expo-checkbox";
 import { setUserName, setPassword } from "../components/Storage";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const Signup = ({ navigation }) => {
   const [userNameText, onUserNameChange] = useState("");
   const [lastNameText, onLastNameChange] = useState("");

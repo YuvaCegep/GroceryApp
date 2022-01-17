@@ -10,7 +10,11 @@ import {
 import { StatusBar } from "expo-status-bar";
 // import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
-import { userName, passWord } from "../components/Storage";
+// import { userName, passWord } from "../components/Storage";
+// import SignUpDetails from "../dataStorage/SignUpDetails.txt";
+import * as FileSystem from "expo-file-system";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = ({ navigation }) => {
   const [isChecked, setChecked] = useState(false);
@@ -18,9 +22,20 @@ const Login = ({ navigation }) => {
   const [userNameText, onUserNameChange] = useState("");
   const [passwordText, onPasswordChange] = useState("");
 
+  //  const saveFile = async () => {
+  // let fileUri = FileSystem.documentDirectory + "text.txt";
+
+  // FileSystem.writeAsStringAsync()
+  // console.log(fileUri);
+
+  // }
+
   // const goToSignup = () => {
   // };
-  function navigateTo(navigateTo) {
+  async function navigateTo(navigateTo) {
+    const userName = await AsyncStorage.getItem("username");
+    const passWord = await AsyncStorage.getItem("password");
+
     if (navigateTo === "Dashboard") {
       if (userNameText === "" || passwordText === "") {
         Alert.alert("Alert", "Please enter the Username and Password", [
@@ -29,6 +44,7 @@ const Login = ({ navigation }) => {
       } else if (userName === userNameText && passWord === passwordText) {
         navigation.navigate(navigateTo);
       } else {
+        // console.log(userName());
         Alert.alert("Alert", "Wrong username or password", [
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
@@ -39,6 +55,7 @@ const Login = ({ navigation }) => {
   }
 
   console.log(userNameText);
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
