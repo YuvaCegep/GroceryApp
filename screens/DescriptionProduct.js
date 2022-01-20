@@ -9,28 +9,54 @@ import {
   Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 const DescriptionProduct = ({ navigation }) => {
+  const [qty, setQty] = useState(0);
+
+  function setQuantity(increasedOrDecreased) {
+    if (increasedOrDecreased === "increase") {
+      setQty(qty + 1);
+    } else {
+      if (qty === 0) {
+        return;
+      } else {
+        setQty(qty - 1);
+      }
+    }
+  }
+
   return (
     <ScrollView style={styles.container}>
+      <StatusBar style="auto" />
+
       <View style={styles.viewContainer}>
         <Image
           style={styles.imageDescStyle}
           source={require("../assets/dairy.jpg")}
         />
         <View style={styles.productPrice}>
-          <Text style={{ color: "#000000", fontWeight: "bold", fontSize: 25 }}>
+          <Text style={{ color: "#ffffff", fontWeight: "bold", fontSize: 25 }}>
             Product Name
           </Text>
           <View
             style={{
               flexDirection: "row",
               backgroundColor: "#ffffff",
-              borderRadius: 100,
             }}
           >
-            <Text style={styles.positiveNegativeView}>-</Text>
-            <Text style={styles.variableNumber}>0</Text>
-            <Text style={styles.positiveNegativeView}>+</Text>
+            <TouchableOpacity
+              onPress={() => setQuantity("decrease")}
+              style={{ backgroundColor: "#E1E3E2" }}
+            >
+              {<Text style={styles.positiveNegativeView}>-</Text>}
+            </TouchableOpacity>
+            <Text style={styles.variableNumber}>{qty}</Text>
+            <TouchableOpacity
+              onPress={() => setQuantity("increase")}
+              style={{ backgroundColor: "#E1E3E2" }}
+            >
+              {<Text style={styles.positiveNegativeView}>+</Text>}
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -40,12 +66,20 @@ const DescriptionProduct = ({ navigation }) => {
             fontWeight: "bold",
             fontSize: 25,
             paddingLeft: 15,
+            color: "#ffffff",
           }}
         >
           $25
         </Text>
 
-        <Text style={{ paddingLeft: 15, paddingRight: 15, marginTop: 10 }}>
+        <Text
+          style={{
+            color: "#ffffff",
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginTop: 10,
+          }}
+        >
           Product description Product description Product description Product
           description Product description Product description Product
           description
@@ -68,7 +102,9 @@ const DescriptionProduct = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor: "#24253C",
+  },
   imageDescStyle: {
     height: 350,
     width: "100%",
@@ -83,17 +119,14 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   positiveNegativeView: {
-    backgroundColor: "#E1E3E2",
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingTop: 3,
-    paddingBottom: 3,
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: 21,
   },
   variableNumber: {
     paddingLeft: 12,
     paddingRight: 12,
-    paddingTop: 3,
-    paddingBottom: 3,
+    fontSize: 21,
   },
   button: {
     marginTop: 35,

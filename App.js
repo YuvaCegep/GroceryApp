@@ -25,7 +25,13 @@ const App = () => {
           component={Signup}
         />
         <Stack.Screen
-          options={{ headerShown: true, title: "Products" }}
+          options={{
+            headerShown: true,
+            title: "Products",
+            headerStyle: { backgroundColor: "#24253C" },
+            headerTitleStyle: { color: "#ffffff" },
+            headerTintColor: "#ffffff",
+          }}
           name="CategoryList"
           component={CategoryList}
         />
@@ -43,7 +49,13 @@ const App = () => {
         />
 
         <Stack.Screen
-          options={{ headerShown: false, title: "Product Description" }}
+          options={{
+            headerShown: false,
+            title: "Product Description",
+            headerStyle: { backgroundColor: "#24253C" },
+            headerTitleStyle: { color: "#ffffff" },
+            headerTintColor: "#ffffff",
+          }}
           name="DescriptionProduct"
           component={DescriptionProduct}
         />

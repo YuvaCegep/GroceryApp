@@ -15,14 +15,15 @@ const CatItem = ({ name, image, price, clickFunction }) => {
         <Image style={styles.imageStyle} source={image} />
         <View
           style={{
-            backgroundColor: "#ffffff",
+            backgroundColor: "#24253C",
+
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <Text>{name}</Text>
+          <Text style={styles.textColor}>{name}</Text>
 
-          <Text>{price}</Text>
+          <Text style={styles.textColor}>{price}</Text>
           {/* <TouchableOpacity>
             <View style={styles.touchableStyle}>
               <Text> Add </Text>
@@ -47,6 +48,9 @@ const styles = StyleSheet.create({
   touchableStyle: {
     borderRadius: 15,
     backgroundColor: "#ffff00",
+  },
+  textColor: {
+    color: "#ffffff",
   },
 });
 
