@@ -14,6 +14,8 @@ import {
 import Search from "../components/Search";
 import { StatusBar } from "expo-status-bar";
 
+import { offerData } from "../dataStorage/Inventory";
+
 // import DashboadData from "../groceryData/DashboadData";
 
 const Dashboard = ({ navigation }) => {
@@ -24,13 +26,25 @@ const Dashboard = ({ navigation }) => {
   const numColumns = 2;
   let imageWidth = Dimensions.get("window").width / numColumns;
 
-  function navigateToNextScreen(nextScreen) {
-    navigation.navigate(nextScreen);
+  const checkValue = require("../dataStorage/Inventory");
+  // console.log(checkValue.offers);
+
+  function navigateToNextScreen(nextScreen, id) {
+    navigation.navigate(nextScreen, { paramKey: id });
+    // console.log("Called");
+
+    // if (nextScreen === "CategoryList") {
+    //   checkValue.headingList[0].categoryHeading = "Yuvraj";
+    // } else {
+    //   console.log(checkValue.headingList);
+    // }
   }
 
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => navigateToNextScreen("CategoryList")}>
+      <TouchableOpacity
+        onPress={() => navigateToNextScreen("CategoryList", item.id)}
+      >
         <Image style={styles.bannerImage} source={item.image} />
       </TouchableOpacity>
     );
@@ -42,7 +56,9 @@ const Dashboard = ({ navigation }) => {
 
   const renderCatList = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => navigateToNextScreen("CategoryList")}>
+      <TouchableOpacity
+        onPress={() => navigateToNextScreen("CategoryList", item.id)}
+      >
         {
           <View
             style={{
@@ -69,103 +85,104 @@ const Dashboard = ({ navigation }) => {
       </TouchableOpacity>
     );
   };
-  const DATA = [
-    {
-      id: 1,
-      name: "Offers One",
-      image: require("../assets/banner_image_one.jpg"),
-    },
-    {
-      id: 2,
-      name: "Offers two",
-      image: require("../assets/banner_image_two.jpg"),
-    },
-    {
-      id: 3,
-      name: "Offers three",
-      image: require("../assets/banner_image_three.jpg"),
-    },
 
-    {
-      id: 4,
-      name: "Offers four",
-      image: require("../assets/banner_image_one.jpg"),
-    },
+  // const DATA = [
+  //   {
+  //     id: 1,
+  //     name: "Offers One",
+  //     image: require("../assets/banner_image_one.jpg"),
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Offers two",
+  //     image: require("../assets/banner_image_two.jpg"),
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Offers three",
+  //     image: require("../assets/banner_image_three.jpg"),
+  //   },
 
-    {
-      id: 5,
-      name: "Offers five",
-      image: require("../assets/banner_image_two.jpg"),
-    },
+  //   {
+  //     id: 4,
+  //     name: "Offers four",
+  //     image: require("../assets/banner_image_one.jpg"),
+  //   },
 
-    {
-      id: 6,
-      name: "Offers six",
-      image: require("../assets/banner_image_three.jpg"),
-    },
+  //   {
+  //     id: 5,
+  //     name: "Offers five",
+  //     image: require("../assets/banner_image_two.jpg"),
+  //   },
 
-    {
-      id: 7,
-      name: "Offers seven",
-      image: require("../assets/banner_image_one.jpg"),
-    },
+  //   {
+  //     id: 6,
+  //     name: "Offers six",
+  //     image: require("../assets/banner_image_three.jpg"),
+  //   },
 
-    {
-      id: 8,
-      name: "Offers eight",
-      image: require("../assets/banner_image_two.jpg"),
-    },
+  //   {
+  //     id: 7,
+  //     name: "Offers seven",
+  //     image: require("../assets/banner_image_one.jpg"),
+  //   },
 
-    {
-      id: 9,
-      name: "Offers nine",
-      image: require("../assets/banner_image_three.jpg"),
-    },
+  //   {
+  //     id: 8,
+  //     name: "Offers eight",
+  //     image: require("../assets/banner_image_two.jpg"),
+  //   },
 
-    {
-      id: 10,
-      name: "Offers ten",
-      image: require("../assets/banner_image_one.jpg"),
-    },
-  ];
+  //   {
+  //     id: 9,
+  //     name: "Offers nine",
+  //     image: require("../assets/banner_image_three.jpg"),
+  //   },
 
-  const headingList = [
-    {
-      categoryHeading: "Category",
-    },
-    {
-      categoryHeading: "Popular",
-    },
-    {
-      categoryHeading: "Whats New",
-    },
-    {
-      categoryHeading: "Recent Item",
-    },
-  ];
+  //   {
+  //     id: 10,
+  //     name: "Offers ten",
+  //     image: require("../assets/banner_image_one.jpg"),
+  //   },
+  // ];
 
-  const catList = [
-    {
-      catName: "Fruits and Vegetabeles",
-      image: require("../assets/fruits_vegetables.jpg"),
-    },
-    {
-      catName: "Beverages",
-      image: require("../assets/beverages.png"),
-    },
-    {
-      catName: "Dairy Products",
-      image: require("../assets/dairy.jpg"),
-    },
-    {
-      catName: "Grains",
-      image: require("../assets/foodgrain.jpg"),
-    },
-    {
-      catName: "Frozen Veg",
-      image: require("../assets/frozen.jpg"),
-    },
-  ];
+  // const headingList = [
+  //   {
+  //     categoryHeading: "Category",
+  //   },
+  //   {
+  //     categoryHeading: "Popular",
+  //   },
+  //   {
+  //     categoryHeading: "Whats New",
+  //   },
+  //   {
+  //     categoryHeading: "Recent Item",
+  //   },
+  // ];
+
+  // const catList = [
+  //   {
+  //     catName: "Fruits and Vegetabeles",
+  //     image: require("../assets/fruits_vegetables.jpg"),
+  //   },
+  //   {
+  //     catName: "Beverages",
+  //     image: require("../assets/beverages.png"),
+  //   },
+  //   {
+  //     catName: "Dairy Products",
+  //     image: require("../assets/dairy.jpg"),
+  //   },
+  //   {
+  //     catName: "Grains",
+  //     image: require("../assets/foodgrain.jpg"),
+  //   },
+  //   {
+  //     catName: "Frozen Veg",
+  //     image: require("../assets/frozen.jpg"),
+  //   },
+  // ];
 
   const getHeader = () => {
     return (
@@ -178,17 +195,15 @@ const Dashboard = ({ navigation }) => {
 
         <Text style={styles.headingView}>Best Value</Text>
         <FlatList
-          // style={{ flexGrow: 0 }}
-
           horizontal
-          data={DATA}
+          data={checkValue.offers}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
         />
         <FlatList
           horizontal
-          data={headingList}
+          data={checkValue.headingList}
           renderItem={renderHeading}
           keyExtractor={(item) => item.categoryHeading}
           showsHorizontalScrollIndicator={false}
@@ -205,7 +220,7 @@ const Dashboard = ({ navigation }) => {
       <FlatList
         style={{ marginBottom: 10 }}
         numColumns={numColumns}
-        data={catList}
+        data={checkValue.catList}
         renderItem={renderCatList}
         keyExtractor={(item) => item.catName}
         showsHorizontalScrollIndicator={false}

@@ -10,19 +10,38 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-const DescriptionProduct = ({ navigation }) => {
-  const [qty, setQty] = useState(0);
+const DescriptionProduct = ({ navigation, route }) => {
+  const [qty, setQty] = useState(1);
+
+  const value = require("../dataStorage/Inventory");
 
   function setQuantity(increasedOrDecreased) {
     if (increasedOrDecreased === "increase") {
       setQty(qty + 1);
     } else {
-      if (qty === 0) {
+      if (qty === 1) {
         return;
       } else {
         setQty(qty - 1);
       }
     }
+  }
+  console.log(route.params.paramKey);
+  function addToCartAndNavigate(nextScreen) {
+    // const cartValue
+
+    const itemToCart = {
+      catId: route.params.paramKey.catId,
+      itemImage: route.params.paramKey.itemImage,
+      itemName: route.params.paramKey.itemName,
+      itemPrice: route.params.paramKey.itemPrice,
+      quantity: qty,
+      totalPrice: qty * route.params.paramKey.itemPrice,
+    };
+
+    value.cart.push(itemToCart);
+    console.log(value.cart);
+    navigation.navigate(nextScreen);
   }
 
   return (
@@ -30,13 +49,26 @@ const DescriptionProduct = ({ navigation }) => {
       <StatusBar style="auto" />
 
       <View style={styles.viewContainer}>
-        <Image
+        {/* <Image
           style={styles.imageDescStyle}
-          source={require("../assets/dairy.jpg")}
-        />
+          source={route.params.paramKey.itemImage} */}
+        {/* /> */}
+
+        {typeof route.params.paramKey.itemImage === "object" ? (
+          <Image
+            style={styles.imageDescStyle}
+            source={{ uri: route.params.paramKey.itemImage.localUri }}
+          />
+        ) : (
+          <Image
+            style={styles.imageDescStyle}
+            source={route.params.paramKey.itemImage}
+          />
+        )}
+
         <View style={styles.productPrice}>
           <Text style={{ color: "#ffffff", fontWeight: "bold", fontSize: 25 }}>
-            Product Name
+            {route.params.paramKey.itemName}
           </Text>
           <View
             style={{
@@ -69,7 +101,7 @@ const DescriptionProduct = ({ navigation }) => {
             color: "#ffffff",
           }}
         >
-          $25
+          {"$" + route.params.paramKey.itemPrice}
         </Text>
 
         <Text
@@ -85,7 +117,10 @@ const DescriptionProduct = ({ navigation }) => {
           description
         </Text>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => addToCartAndNavigate("CartList")}
+        >
           <Text style={{ color: "#FFFFFF" }}>Add to Cart</Text>
         </TouchableOpacity>
 
@@ -130,7 +165,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 35,
-
     alignItems: "center",
     backgroundColor: "#DE3856",
     padding: 10,

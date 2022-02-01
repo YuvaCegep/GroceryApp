@@ -7,20 +7,29 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+
 import { StatusBar } from "expo-status-bar";
 // import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
 // import { userName, passWord } from "../components/Storage";
 // import SignUpDetails from "../dataStorage/SignUpDetails.txt";
-import * as FileSystem from "expo-file-system";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// import { fb } from "../src/firebase/config";
+// import "firebase/database";
 
 const Login = ({ navigation }) => {
   const [isChecked, setChecked] = useState(false);
 
   const [userNameText, onUserNameChange] = useState("");
   const [passwordText, onPasswordChange] = useState("");
+
+  // ------------------------- firebase system------------
+  const [entityText, setEntityText] = useState("");
+  const [entities, setEntities] = useState([]);
+
+  // const entityRef = firebase.firestore().collection("entities");
 
   //  const saveFile = async () => {
   // let fileUri = FileSystem.documentDirectory + "text.txt";
@@ -32,6 +41,7 @@ const Login = ({ navigation }) => {
 
   // const goToSignup = () => {
   // };
+
   async function navigateTo(navigateTo) {
     const userName = await AsyncStorage.getItem("username");
     const passWord = await AsyncStorage.getItem("password");
@@ -41,6 +51,8 @@ const Login = ({ navigation }) => {
         Alert.alert("Alert", "Please enter the Username and Password", [
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
+      } else if (userNameText === "Admin" && passwordText === "123") {
+        navigation.navigate("Admin");
       } else if (userName === userNameText && passWord === passwordText) {
         navigation.navigate(navigateTo);
       } else {
@@ -55,6 +67,24 @@ const Login = ({ navigation }) => {
   }
 
   console.log(userNameText);
+
+  function getDataTest() {
+    // fb.database().ref("child");
+    // var docRef = db.collection("entities").doc("myName");
+    // docRef
+    //   .get()
+    //   .then((doc) => {
+    //     if (doc.exists) {
+    //       console.log("Document data:", doc.data());
+    //     } else {
+    //       // doc.data() will be undefined in this case
+    //       console.log("No such document!");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+  }
 
   return (
     <View style={styles.container}>
@@ -153,7 +183,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 35,
-
     alignItems: "center",
     backgroundColor: "#DE3856",
     padding: 10,
