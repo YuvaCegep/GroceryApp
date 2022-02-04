@@ -16,30 +16,23 @@ import { StatusBar } from "expo-status-bar";
 
 import { offerData } from "../dataStorage/Inventory";
 
-// import DashboadData from "../groceryData/DashboadData";
-
 const Dashboard = ({ navigation }) => {
+  // This was created for the functionality of the search field
   function callChangeText(data) {
     console.log(data);
   }
-
+  // This was created for making flat list as grid
   const numColumns = 2;
   let imageWidth = Dimensions.get("window").width / numColumns;
 
   const checkValue = require("../dataStorage/Inventory");
-  // console.log(checkValue.offers);
 
+  // Navigation method with parameters
   function navigateToNextScreen(nextScreen, id) {
     navigation.navigate(nextScreen, { paramKey: id });
-    // console.log("Called");
-
-    // if (nextScreen === "CategoryList") {
-    //   checkValue.headingList[0].categoryHeading = "Yuvraj";
-    // } else {
-    //   console.log(checkValue.headingList);
-    // }
   }
 
+  // Cell created for Horizontal scroll for fillers
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity
@@ -50,10 +43,12 @@ const Dashboard = ({ navigation }) => {
     );
   };
 
+  // Cells for Horizontal scrolls
   const renderHeading = ({ item }) => {
     return <Text style={styles.headingView}> {item.categoryHeading} </Text>;
   };
 
+  // Cells for Category list icons
   const renderCatList = ({ item }) => {
     return (
       <TouchableOpacity
@@ -86,104 +81,8 @@ const Dashboard = ({ navigation }) => {
     );
   };
 
-  // const DATA = [
-  //   {
-  //     id: 1,
-  //     name: "Offers One",
-  //     image: require("../assets/banner_image_one.jpg"),
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Offers two",
-  //     image: require("../assets/banner_image_two.jpg"),
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Offers three",
-  //     image: require("../assets/banner_image_three.jpg"),
-  //   },
-
-  //   {
-  //     id: 4,
-  //     name: "Offers four",
-  //     image: require("../assets/banner_image_one.jpg"),
-  //   },
-
-  //   {
-  //     id: 5,
-  //     name: "Offers five",
-  //     image: require("../assets/banner_image_two.jpg"),
-  //   },
-
-  //   {
-  //     id: 6,
-  //     name: "Offers six",
-  //     image: require("../assets/banner_image_three.jpg"),
-  //   },
-
-  //   {
-  //     id: 7,
-  //     name: "Offers seven",
-  //     image: require("../assets/banner_image_one.jpg"),
-  //   },
-
-  //   {
-  //     id: 8,
-  //     name: "Offers eight",
-  //     image: require("../assets/banner_image_two.jpg"),
-  //   },
-
-  //   {
-  //     id: 9,
-  //     name: "Offers nine",
-  //     image: require("../assets/banner_image_three.jpg"),
-  //   },
-
-  //   {
-  //     id: 10,
-  //     name: "Offers ten",
-  //     image: require("../assets/banner_image_one.jpg"),
-  //   },
-  // ];
-
-  // const headingList = [
-  //   {
-  //     categoryHeading: "Category",
-  //   },
-  //   {
-  //     categoryHeading: "Popular",
-  //   },
-  //   {
-  //     categoryHeading: "Whats New",
-  //   },
-  //   {
-  //     categoryHeading: "Recent Item",
-  //   },
-  // ];
-
-  // const catList = [
-  //   {
-  //     catName: "Fruits and Vegetabeles",
-  //     image: require("../assets/fruits_vegetables.jpg"),
-  //   },
-  //   {
-  //     catName: "Beverages",
-  //     image: require("../assets/beverages.png"),
-  //   },
-  //   {
-  //     catName: "Dairy Products",
-  //     image: require("../assets/dairy.jpg"),
-  //   },
-  //   {
-  //     catName: "Grains",
-  //     image: require("../assets/foodgrain.jpg"),
-  //   },
-  //   {
-  //     catName: "Frozen Veg",
-  //     image: require("../assets/frozen.jpg"),
-  //   },
-  // ];
-
+  // This is the header view that inculcates other
+  // views so as to single smooth scroll in flat list
   const getHeader = () => {
     return (
       <View>

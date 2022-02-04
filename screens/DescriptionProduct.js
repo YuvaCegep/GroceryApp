@@ -11,8 +11,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 const DescriptionProduct = ({ navigation, route }) => {
+  // Quantity set to 1 as the customer suppose to have atleast one item
   const [qty, setQty] = useState(1);
-
   const value = require("../dataStorage/Inventory");
 
   function setQuantity(increasedOrDecreased) {
@@ -28,8 +28,8 @@ const DescriptionProduct = ({ navigation, route }) => {
   }
   console.log(route.params.paramKey);
   function addToCartAndNavigate(nextScreen) {
-    // const cartValue
-
+    // This function is called to  enter the value
+    // in the cart
     const itemToCart = {
       catId: route.params.paramKey.catId,
       itemImage: route.params.paramKey.itemImage,

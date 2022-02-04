@@ -11,6 +11,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 
 const ConfirmScreen = ({ navigation, route }) => {
+  // This is done to empty the cart list
   require("../dataStorage/Inventory").cart.length = 0;
 
   console.log("clear valuee ----" + require("../dataStorage/Inventory").cart);

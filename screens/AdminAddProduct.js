@@ -12,8 +12,9 @@ import {
 import * as ImagePicker from "expo-image-picker";
 
 const AdminAddProduct = () => {
-  require("../dataStorage/Inventory").product[0].itemName = "Appple";
+  // require("../dataStorage/Inventory").product[0].itemName = "Appple";
 
+  // Parameters required for adding the product
   const [selectedImage, setSelectedImage] = useState(
     "../assets/add-to-basket.png"
   );
@@ -23,6 +24,8 @@ const AdminAddProduct = () => {
 
   const [price, onPriceChange] = useState("");
 
+  // Save the data in the list
+  // for inventory
   function saveData() {
     const value = {
       catId: parseInt(catID),
@@ -36,6 +39,8 @@ const AdminAddProduct = () => {
     console.log(require("../dataStorage/Inventory").product);
   }
 
+  // To open the Gallery of the mobile to add
+  //  the media
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();

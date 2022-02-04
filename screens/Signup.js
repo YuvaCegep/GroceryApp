@@ -8,10 +8,8 @@ import {
   Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-// import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
 import { setUserName, setPassword } from "../components/Storage";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = ({ navigation }) => {
@@ -21,6 +19,7 @@ const Signup = ({ navigation }) => {
   const [passwordText, onPasswordChange] = useState("");
   const [confirmPasswordText, onConfirmPasswordChange] = useState("");
 
+  // Navigation with the message if req fields are not filled
   function navigateToLogin(withSignUp) {
     if (withSignUp) {
       if (

@@ -3,7 +3,6 @@ import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
 import CatItem from "../components/CatItem";
 
 const ChangeProductDesc = ({ navigation, route }) => {
-  //   console.log(route.params.paramKey);
   const checkValue = require("../dataStorage/Inventory");
 
   function navigateNext(navigateTo, item) {
@@ -13,12 +12,6 @@ const ChangeProductDesc = ({ navigation, route }) => {
   function getReqProduct() {
     return checkValue.product;
   }
-
-  //   function filterProductBaseOnCat(prodData) {
-  //     if (prodData.catId === route.params.paramKey) {
-  //       return prodData;
-  //     }
-  //   }
 
   const renderCatItems = ({ item }) => {
     return (

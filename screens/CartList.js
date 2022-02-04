@@ -14,15 +14,20 @@ const CartList = ({ navigation, route }) => {
   const cartList = require("../dataStorage/Inventory");
 
   let totalValue = 0;
+
+  // To calculate the total value of the cart
   function totalPriceOfCart() {
     for (let i = 0; i < cartList.cart.length; i++) {
       totalValue += cartList.cart[i].totalPrice;
     }
   }
 
+  // Navigation to the next screen with the parameters
   function navigateToShipping() {
     navigation.navigate("ShippingAddress", { paramKey: totalValue });
   }
+
+  // Cell for the cart items
   const renderCartItem = ({ item }) => {
     return (
       <CartView

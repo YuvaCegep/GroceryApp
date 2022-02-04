@@ -3,60 +3,20 @@ import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
 import CatItem from "../components/CatItem";
 
 const CategoryList = ({ navigation, route }) => {
-  // const catItem = [
-  //   {
-  //     itemName: "Apple",
-  //     itemImage: require("../assets/apple.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "orange",
-  //     itemImage: require("../assets/orange.jpg"),
-  //     itemPrice: "$35",
-  //   },
-  //   {
-  //     itemName: "Banana",
-  //     itemImage: require("../assets/banana.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "Blueberry",
-  //     itemImage: require("../assets/blueberry.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "Grapes",
-  //     itemImage: require("../assets/grapes.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "Papaya",
-  //     itemImage: require("../assets/papaya.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "Cherry",
-  //     itemImage: require("../assets/cherry.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  //   {
-  //     itemName: "Mango",
-  //     itemImage: require("../assets/mango.jpg"),
-  //     itemPrice: "$25",
-  //   },
-  // ];
-
   console.log(route.params.paramKey);
   const checkValue = require("../dataStorage/Inventory");
 
+  // Navigation with parameter
   function navigateNext(navigateTo, item) {
     navigation.navigate(navigateTo, { paramKey: item });
   }
 
+  // Filtering the product as per req category
   function getReqProduct() {
     return checkValue.product.filter(filterProductBaseOnCat);
   }
 
+  // Filtering the product as per req category
   function filterProductBaseOnCat(prodData) {
     if (prodData.catId === route.params.paramKey) {
       return prodData;

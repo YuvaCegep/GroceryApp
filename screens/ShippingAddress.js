@@ -8,13 +8,13 @@ import {
   Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-// import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
 import { setUserName, setPassword } from "../components/Storage";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ShippingAddress = ({ navigation, route }) => {
+  //  Fields related to shipping address
   const [userNameText, onUserNameChange] = useState("");
   const [emailText, onEmailChange] = useState("");
   const [address, onAddressChange] = useState("");
@@ -23,6 +23,7 @@ const ShippingAddress = ({ navigation, route }) => {
 
   const orderData = require("../dataStorage/Inventory");
 
+  // Navigaiton if all the fields are filled
   function navigateToConfirm() {
     if (
       userNameText === "" ||
@@ -40,8 +41,10 @@ const ShippingAddress = ({ navigation, route }) => {
     }
   }
 
+  // Random order id generated
   const orderId = Math.floor(100000 + Math.random() * 900000);
 
+  // This will create order object and will save it in the order list
   function createOrderId() {
     const shippingDetails = {
       firstLastName: userNameText,

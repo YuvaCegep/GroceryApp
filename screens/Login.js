@@ -9,19 +9,12 @@ import {
 } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
-// import { CheckBox } from "@react-native-community/checkbox";
 import Checkbox from "expo-checkbox";
-// import { userName, passWord } from "../components/Storage";
-// import SignUpDetails from "../dataStorage/SignUpDetails.txt";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// import { fb } from "../src/firebase/config";
-// import "firebase/database";
-
 const Login = ({ navigation }) => {
+  // use state variable
   const [isChecked, setChecked] = useState(false);
-
   const [userNameText, onUserNameChange] = useState("");
   const [passwordText, onPasswordChange] = useState("");
 
@@ -29,19 +22,7 @@ const Login = ({ navigation }) => {
   const [entityText, setEntityText] = useState("");
   const [entities, setEntities] = useState([]);
 
-  // const entityRef = firebase.firestore().collection("entities");
-
-  //  const saveFile = async () => {
-  // let fileUri = FileSystem.documentDirectory + "text.txt";
-
-  // FileSystem.writeAsStringAsync()
-  // console.log(fileUri);
-
-  // }
-
-  // const goToSignup = () => {
-  // };
-
+  // Navigation with the message if the required field is not filled
   async function navigateTo(navigateTo) {
     const userName = await AsyncStorage.getItem("username");
     const passWord = await AsyncStorage.getItem("password");
@@ -64,26 +45,6 @@ const Login = ({ navigation }) => {
     } else {
       navigation.navigate(navigateTo);
     }
-  }
-
-  console.log(userNameText);
-
-  function getDataTest() {
-    // fb.database().ref("child");
-    // var docRef = db.collection("entities").doc("myName");
-    // docRef
-    //   .get()
-    //   .then((doc) => {
-    //     if (doc.exists) {
-    //       console.log("Document data:", doc.data());
-    //     } else {
-    //       // doc.data() will be undefined in this case
-    //       console.log("No such document!");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
   }
 
   return (
